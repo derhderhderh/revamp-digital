@@ -1,0 +1,61 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function isOwner(uid) { return signedIn() && request.auth.uid == uid; }
+    function isAdmin() {
+      return signedIn() &&
+        exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == "admin";
+    }
+
+    match /users/{userId} {
+      allow create: if isOwner(userId);
+      allow read, update: if isOwner(userId) || isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    match /quotes/{id} {
+      allow create: if true;
+      allow read, update, delete: if isAdmin() || (signedIn() && resource.data.userId == request.auth.uid);
+    }
+
+    match /chats/{chatId} {
+      allow create: if true;
+      allow read, update: if isAdmin() || (signedIn() && resource.data.clientId == request.auth.uid);
+      match /messages/{messageId} {
+        allow read, create, update: if isAdmin() || signedIn();
+      }
+    }
+
+    match /{collection}/{id} {
+      allow read: if collection in ["testimonials", "blogPosts", "maintenancePlans", "portfolioProjects", "adminSettings"];
+      allow write: if isAdmin();
+    }
+
+    match /projects/{id} {
+      allow read, update: if isAdmin() || (signedIn() && resource.data.clientId == request.auth.uid);
+      allow create, delete: if isAdmin();
+    }
+
+    match /supportTickets/{id} {
+      allow create: if signedIn();
+      allow read, update: if isAdmin() || (signedIn() && resource.data.clientId == request.auth.uid);
+    }
+
+    match /notifications/{id} {
+      allow read, update: if isAdmin() || (signedIn() && resource.data.userId == request.auth.uid);
+      allow create, delete: if isAdmin();
+    }
+
+    match /maintenanceReports/{id} {
+      allow read: if isAdmin() || (signedIn() && resource.data.clientId == request.auth.uid);
+      allow write: if isAdmin();
+    }
+
+    match /websiteAnalyses/{id} {
+      allow create: if true;
+      allow read, update, delete: if isAdmin() || (signedIn() && resource.data.userId == request.auth.uid);
+    }
+  }
+}

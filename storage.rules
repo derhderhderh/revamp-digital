@@ -1,0 +1,18 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    function signedIn() { return request.auth != null; }
+    function isSafeFile() {
+      return request.resource.size < 10 * 1024 * 1024 &&
+        request.resource.contentType.matches('image/.*|application/pdf|application/zip|text/.*');
+    }
+    match /uploads/{userId}/{allPaths=**} {
+      allow read: if signedIn() && (request.auth.uid == userId);
+      allow write: if signedIn() && request.auth.uid == userId && isSafeFile();
+    }
+    match /public/{allPaths=**} {
+      allow read: if true;
+      allow write: if signedIn() && isSafeFile();
+    }
+  }
+}
