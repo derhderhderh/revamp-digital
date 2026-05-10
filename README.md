@@ -22,4 +22,4 @@ Deploy `firestore.rules` and `storage.rules` from the Firebase console or CLI. T
 
 ## Notes
 
-The app is functional with real integrations when environment variables are present. In local development without API keys, AI and email routes return safe fallback responses so the interface remains testable.
+The app is functional with real integrations when environment variables are present. In local development without API keys, AI and email routes return safe fallback responses so the interface remains testable. Authentication is Firebase email and password only.
