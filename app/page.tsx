@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Eyebrow, Section } from "@/components/ui/section";
 import { faqs, plans, portfolio, services, testimonials } from "@/lib/data";
 import { WebsiteAnalyzer } from "@/components/website-analyzer";
+import { BeforeAfterShowcase } from "@/components/before-after-showcase";
 
 export default function HomePage() {
   return (
@@ -98,16 +99,7 @@ export default function HomePage() {
           <div className="grid gap-4">
             {portfolio.map((project, index) => (
               <Reveal key={project.name} delay={index * 0.06}>
-                <div className="glass rounded-3xl p-5">
-                  <div className="flex flex-wrap items-center justify-between gap-3">
-                    <div><p className="font-bold">{project.name}</p><p className="text-sm text-slate-500">{project.category}</p></div>
-                    <div className="flex flex-wrap gap-2">{project.stats.map((stat) => <span key={stat} className="rounded-full bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-700 dark:text-emerald-300">{stat}</span>)}</div>
-                  </div>
-                  <div className="mt-4 grid gap-3 md:grid-cols-2">
-                    <p className="rounded-2xl bg-rose-500/10 p-4 text-sm text-slate-700 dark:text-slate-200">{project.before}</p>
-                    <p className="rounded-2xl bg-emerald-500/10 p-4 text-sm text-slate-700 dark:text-slate-200">{project.after}</p>
-                  </div>
-                </div>
+                <BeforeAfterShowcase project={project} compact />
               </Reveal>
             ))}
           </div>

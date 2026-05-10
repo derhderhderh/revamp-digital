@@ -18,21 +18,66 @@ export const portfolio = [
     category: "Healthcare",
     before: "Legacy brochure site with slow pages and buried contact forms.",
     after: "Fast local SEO hub with booking CTAs, service pages, and mobile-first navigation.",
-    stats: ["+41 speed score", "+63% booking clicks", "+28 SEO points"]
+    stats: ["+41 speed score", "+63% booking clicks", "+28 SEO points"],
+    palette: "cyan",
+    oldSite: {
+      headline: "Family Dental Care",
+      subhead: "Serving the community since 1998",
+      nav: ["Home", "About", "Services", "Contact"],
+      cta: "Call Us",
+      notes: ["Tiny phone number", "No online booking", "Slow image gallery"]
+    },
+    newSite: {
+      headline: "Confident Smiles Start Here",
+      subhead: "Modern family dentistry with same-week appointments.",
+      nav: ["Services", "Insurance", "Reviews", "Book"],
+      cta: "Book Visit",
+      sections: ["Emergency care", "Cosmetic dentistry", "New patient offer"]
+    }
   },
   {
     name: "Oak & Iron Contractors",
     category: "Home Services",
     before: "Outdated gallery, unclear trust signals, weak quote flow.",
     after: "Project showcase, review-rich landing pages, and AI-backed quote intake.",
-    stats: ["2.3s faster load", "+52% form starts", "+34 mobile score"]
+    stats: ["2.3s faster load", "+52% form starts", "+34 mobile score"],
+    palette: "emerald",
+    oldSite: {
+      headline: "Quality Construction",
+      subhead: "Decks, kitchens, baths, basements",
+      nav: ["Welcome", "Photos", "Info", "Email"],
+      cta: "Submit",
+      notes: ["Low-res gallery", "No reviews", "Quote form hidden"]
+    },
+    newSite: {
+      headline: "Renovations Built Around Your Home",
+      subhead: "Licensed contractors with transparent estimates and weekly updates.",
+      nav: ["Projects", "Process", "Reviews", "Estimate"],
+      cta: "Get Estimate",
+      sections: ["Kitchen remodels", "Deck builds", "Bathroom upgrades"]
+    }
   },
   {
     name: "Bloom Local Studio",
     category: "Retail",
     before: "Template site with inconsistent branding and low engagement.",
     after: "Premium editorial storefront with events, email capture, and care plan support.",
-    stats: ["+47% retention", "+39 SEO points", "+22% repeat visits"]
+    stats: ["+47% retention", "+39 SEO points", "+22% repeat visits"],
+    palette: "coral",
+    oldSite: {
+      headline: "Bloom Shop",
+      subhead: "Plants gifts workshops more",
+      nav: ["Shop", "Classes", "Blog", "Links"],
+      cta: "More",
+      notes: ["Mixed fonts", "No event flow", "Weak mobile layout"]
+    },
+    newSite: {
+      headline: "Plants, Gifts, and Weekend Workshops",
+      subhead: "A warm local shop experience built for browsing and repeat visits.",
+      nav: ["Shop", "Workshops", "Events", "Visit"],
+      cta: "See Events",
+      sections: ["Gift bundles", "Workshop calendar", "Local delivery"]
+    }
   }
 ];
 
