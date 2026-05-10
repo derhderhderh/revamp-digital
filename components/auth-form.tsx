@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { doc, setDoc, serverTimestamp } from "firebase/firestore";
+import { doc, getDoc, setDoc, serverTimestamp } from "firebase/firestore";
 import { auth, db, hasFirebaseClientConfig } from "@/lib/firebase/client";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
@@ -35,10 +35,13 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
           createdAt: serverTimestamp()
         });
       }
+      await cred.user.getIdToken(true);
       const idToken = await cred.user.getIdToken();
       await fetch("/api/auth/session", { method: "POST", body: JSON.stringify({ idToken }) });
       toast.success("Welcome to Revamp Digital");
-      router.push(email === process.env.NEXT_PUBLIC_ADMIN_EMAIL ? "/admin" : "/dashboard");
+      const userSnap = await getDoc(doc(db, "users", cred.user.uid));
+      const role = userSnap.data()?.role;
+      router.push(role === "admin" || email === process.env.NEXT_PUBLIC_ADMIN_EMAIL ? "/admin" : "/dashboard");
     } catch (error: any) {
       toast.error(error.message || "Authentication failed");
     } finally {

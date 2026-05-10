@@ -9,13 +9,34 @@ out/
 dist/
 build/
 
-# Environment variables
+# Environment variables and local secrets
 .env
+.env.*
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 .env.example
+*.env
+*.env.local
+
+# Credential files
+credentials/
+secrets/
+*.secret
+*.secrets
+*.pem
+*.key
+*.p12
+*.p8
+service-account*.json
+serviceAccount*.json
+firebase-service-account*.json
+firebase-adminsdk*.json
+google-application-credentials*.json
+application_default_credentials.json
+seed-credentials.*
+local-credentials.*
 
 # Firebase
 .firebase/

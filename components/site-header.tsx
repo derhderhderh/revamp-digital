@@ -5,6 +5,7 @@ import { Menu, Moon, Sun, X } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/components/theme-provider";
+import { Logo } from "@/components/logo";
 
 const nav = [
   ["Services", "/services"],
@@ -22,8 +23,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 border-b border-slate-200/60 bg-cloud/78 backdrop-blur-xl dark:border-white/10 dark:bg-ink/78">
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
         <Link href="/" className="flex items-center gap-3 font-bold">
-          <span className="grid size-9 place-items-center rounded-2xl bg-ink text-white shadow-glow dark:bg-white dark:text-ink">R</span>
-          <span>Revamp Digital</span>
+          <Logo />
         </Link>
         <div className="hidden items-center gap-1 lg:flex">
           {nav.map(([label, href]) => (
@@ -47,7 +47,7 @@ export function SiteHeader() {
         <div className="fixed inset-0 z-50 bg-ink/45 backdrop-blur-sm lg:hidden">
           <div className="ml-auto h-full w-[min(88vw,360px)] bg-cloud p-5 shadow-2xl dark:bg-ink">
             <div className="mb-8 flex items-center justify-between">
-              <span className="font-bold">Revamp Digital</span>
+              <Logo />
               <button aria-label="Close menu" onClick={() => setOpen(false)} className="grid size-10 place-items-center rounded-full glass">
                 <X size={18} />
               </button>

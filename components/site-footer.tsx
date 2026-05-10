@@ -1,11 +1,12 @@
 import Link from "next/link";
+import { Logo } from "@/components/logo";
 
 export function SiteFooter() {
   return (
     <footer className="border-t border-slate-200/70 px-4 py-10 dark:border-white/10 sm:px-6 lg:px-8">
       <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
-          <p className="font-bold">Revamp Digital</p>
+          <Logo />
           <p className="mt-3 max-w-md text-sm leading-6 text-slate-600 dark:text-slate-300">
             Modern websites, AI insights, maintenance, and support for small businesses that are ready to look current and convert better.
           </p>
